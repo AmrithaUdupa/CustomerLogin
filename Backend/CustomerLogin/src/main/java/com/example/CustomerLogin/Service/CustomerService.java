@@ -26,6 +26,24 @@ public class CustomerService {
 		return customerRepo.findById(id).orElse(null);
 	}
 	
+	public CustomerEntity updateDetails(CustomerEntity customerDetails) {
+		
+		CustomerEntity updateStudent=customerRepo.findById(customerDetails.getId()).orElse(null);
+		
+		if(updateStudent!=null) {
+			
+			updateStudent.setName(customerDetails.getName());
+			updateStudent.setPassword(customerDetails.getPassword());
+			
+			customerRepo.save(updateStudent);
+			return updateStudent;
+		}
+		return null;
+	}
+	
+	
+	
+	
 	
 
 }
