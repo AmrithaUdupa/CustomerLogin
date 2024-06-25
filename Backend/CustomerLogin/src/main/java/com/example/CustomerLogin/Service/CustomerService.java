@@ -1,5 +1,7 @@
 package com.example.CustomerLogin.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,13 @@ public class CustomerService {
 	private CustomerRepo customerRepo;
 	
 	public CustomerEntity saveDetails(CustomerEntity customer) {
-		return customerRepo.save(customer);
-		
+		return customerRepo.save(customer);	
 	}
+	
+	public List<CustomerEntity> getAllDetails(){
+		return customerRepo.findAll();
+	}
+	
+	
 
 }
