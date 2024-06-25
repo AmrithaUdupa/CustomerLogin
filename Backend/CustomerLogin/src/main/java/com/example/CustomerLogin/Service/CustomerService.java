@@ -22,6 +22,10 @@ public class CustomerService {
 		return customerRepo.findAll();
 	}
 	
+	public CustomerEntity getStudentDetailsById(int id) {
+		return customerRepo.findById(id).orElse(null);
+	}
+	
 	
 
 }

@@ -34,6 +34,10 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-parameters'
+}
+
 springBoot {
     mainClass = 'com.example.CustomerLoginApplication' 
 }
