@@ -41,7 +41,11 @@ public class CustomerService {
 		return null;
 	}
 	
-	
+	public String deleteStudent(int id) {
+		
+		customerRepo.deleteById(id);	
+		return "deleted"+id;
+	}
 	
 	
 	
