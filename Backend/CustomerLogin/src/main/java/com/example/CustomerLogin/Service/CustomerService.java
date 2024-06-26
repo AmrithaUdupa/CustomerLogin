@@ -3,6 +3,7 @@ package com.example.CustomerLogin.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.example.CustomerLogin.Entity.CustomerEntity;
@@ -14,8 +15,11 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepo customerRepo;
 	
-	public CustomerEntity saveDetails(CustomerEntity customer) {
-		return customerRepo.save(customer);	
+	public void saveDetails(CustomerEntity customer) {
+		if (customerRepo.existsByPassword(customer.getPassword())) {
+            throw new DataIntegrityViolationException("Duplicate password: " + customer.getPassword());
+        }
+		customerRepo.save(customer);	
 	}
 	
 	public List<CustomerEntity> getAllDetails(){

@@ -3,6 +3,10 @@ package com.example.CustomerLogin.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,10 +25,24 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@PostMapping("/addStudent")
-	public CustomerEntity postDetails(@RequestBody CustomerEntity customer) 
+	public ResponseEntity<String> postDetails(@RequestBody CustomerEntity customer) 
 	{
-		return customerService.saveDetails(customer);
+		try {
+			customerService.saveDetails(customer);
+			return ResponseEntity.ok("Student saved successfully!");
+			
+		}
+		catch (DataIntegrityViolationException e) {
+            if (e.getMessage().contains("password")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate password combination: " + customer.getPassword());
+            } 
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate key error: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving student: " + e.getMessage());
+        }
 	}
+	
+	
 	
 	@GetMapping("/getStudent")
 	public List<CustomerEntity> getDetails(){

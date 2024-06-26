@@ -6,5 +6,5 @@ import com.example.CustomerLogin.Entity.CustomerEntity;
 
 public interface CustomerRepo extends JpaRepository<CustomerEntity, Integer>{
 	
-	
+	boolean existsByPassword(String password);
 }
