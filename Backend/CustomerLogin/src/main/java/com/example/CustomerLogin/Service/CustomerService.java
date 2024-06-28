@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.CustomerLogin.Entity.CustomerEntity;
 import com.example.CustomerLogin.Repository.CustomerRepo;
 
+
 @Service
 public class CustomerService {
 	
@@ -51,7 +52,15 @@ public class CustomerService {
 		return "deleted"+id;
 	}
 	
-	
+	public boolean authenticate(String name, String password) {
+        CustomerEntity customer = customerRepo.findByname(name);
+        
+        // Check if student exists and compare passwords
+        if (customer != null && customer.getPassword().equals(password)) {
+            return true; // Authentication successful
+        }
+        return false; // Authentication failed
+    }
 	
 
 }
