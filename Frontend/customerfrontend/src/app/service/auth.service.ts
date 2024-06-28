@@ -9,6 +9,6 @@ export class AuthService {
 
   login(name: string, password: string) {
     const bodyData = { name, password };
-    return this.http.post<any>('http://localhost:8081/addStudent/login', bodyData);
+    return this.http.post<any>('http://localhost:8086/addStudent/login', bodyData);
   }
 }

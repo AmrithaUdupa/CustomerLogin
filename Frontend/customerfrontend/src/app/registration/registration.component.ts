@@ -35,7 +35,7 @@ export class RegistrationComponent {
     // send a POST request
     // The subscribe method is used to handle the observable returned by the post method. 
     // The next function is called when the request is successful.
-    this.http.post("http://localhost:8081/addStudent", bodyData, { responseType: 'text' }).subscribe({
+    this.http.post("http://localhost:8086/addStudent", bodyData, { responseType: 'text' }).subscribe({
       next: (resultData: any) => {
         console.log(resultData);
         alert("Student Registered Successfully");
@@ -60,7 +60,7 @@ export class RegistrationComponent {
 
   getAllStudent() {
     console.log('Fetching all students');
-    this.http.get<any>("http://localhost:8081/getStudent").subscribe({
+    this.http.get<any>("http://localhost:8086/getStudent").subscribe({
       next: (resultData: any[]) => {
         console.log('Fetched students:', resultData);
 
@@ -93,7 +93,7 @@ export class RegistrationComponent {
 
     console.log('Updating student with ID:', this.currentStudentID, 'and data:', bodyData);
 
-    this.http.put(`http://localhost:8081/updateStudent`, bodyData, { responseType: 'json' }).subscribe({
+    this.http.put(`http://localhost:8086/updateStudent`, bodyData, { responseType: 'json' }).subscribe({
       next: (resultData: any) => {
         console.log('Update response:', resultData);
         alert("Student Record Updated");
@@ -120,7 +120,7 @@ export class RegistrationComponent {
   setDelete(data: any) {
     console.log('Deleting student with ID:', data.id);
 
-    this.http.delete(`http://localhost:8081/deleteStudent/${data.id}`, { responseType: 'text' }).subscribe({
+    this.http.delete(`http://localhost:8086/deleteStudent/${data.id}`, { responseType: 'text' }).subscribe({
       next: (resultData: any) => {
         console.log(resultData);
         alert("Student Deleted");
