@@ -19,7 +19,7 @@ import dto.LoginRequest;
 
 
 @RestController
-@RequestMapping("http://localhost:8081/")
+@RequestMapping("addStudent")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CustomerControllerLogin {
 	

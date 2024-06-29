@@ -24,6 +24,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/customerfrontend",
+            "baseHref": "/customerfrontend/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -99,6 +100,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
