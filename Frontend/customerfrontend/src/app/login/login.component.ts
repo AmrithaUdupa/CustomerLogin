@@ -9,6 +9,11 @@ import { AuthService } from '../service/auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+  navigateToRegistration() {
+    this.router.navigate(['registration']);
+  }
+
   name: string = '';
   password: string = '';
 
