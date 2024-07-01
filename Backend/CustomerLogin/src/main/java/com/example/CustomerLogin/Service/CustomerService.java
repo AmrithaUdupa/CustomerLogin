@@ -20,6 +20,9 @@ public class CustomerService {
 		if (customerRepo.existsByPassword(customer.getPassword())) {
             throw new DataIntegrityViolationException("Duplicate password: " + customer.getPassword());
         }
+		if (customer.getRole() == null || customer.getRole().isEmpty()) {
+            customer.setRole("USER"); // Set default role to 'USER'
+        }
 		customerRepo.save(customer);	
 	}
 	
@@ -61,6 +64,14 @@ public class CustomerService {
         }
         return false; // Authentication failed
     }
+	
+	public String getRole(String name) {
+	    CustomerEntity customer = customerRepo.findByname(name);
+	    if (customer != null) {
+	        return customer.getRole(); 
+	    }
+	    return null;
+	}
 	
 
 }

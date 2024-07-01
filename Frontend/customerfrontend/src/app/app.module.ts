@@ -10,6 +10,7 @@ import { LayoutComponent } from './sharepage/layout/layout.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './sharepage/navbar/navbar.component';
 import { AuthService } from './service/auth.service';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthService } from './service/auth.service';
     RegistrationComponent,
     HomeComponent,
     LayoutComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

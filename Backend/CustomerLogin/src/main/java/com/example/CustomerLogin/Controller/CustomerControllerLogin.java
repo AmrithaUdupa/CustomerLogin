@@ -34,10 +34,12 @@ public class CustomerControllerLogin {
 	    
 	    // Perform authentication logic
 	    boolean isAuthenticated = customerService.authenticate(name, password);
+	    String role = customerService.getRole(name); 
 	    
 	    Map<String, String> response = new HashMap<>();
 	    if (isAuthenticated) {
 	        response.put("message", "Login successful!");
+	        response.put("role", role);
 	        return ResponseEntity.ok(response);
 	    } else {
 	        response.put("message", "Incorrect username or password");

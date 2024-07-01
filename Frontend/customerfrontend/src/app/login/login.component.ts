@@ -12,30 +12,51 @@ export class LoginComponent {
   name: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
+  
   login() {
     const bodyData = {
       name: this.name,
       password: this.password
     };
 
+   
+   
+
     this.http.post<any>('http://localhost:8086/addStudent/login', bodyData)
       .subscribe({
         next: (response: any) => {
           console.log(response); // Log the response for debugging
           if (response.message === 'Login successful!') {
-            this.authService.login(this.name,this.password); // Set login state
-            alert("Login successful!"); // Or redirect to another page
-            this.router.navigate(['/home']); // Redirect to welcome page or home
-          } else {
-            alert("Incorrect username or password");
-          }
+            this.authService.login(this.name, this.password);
+          
+
+         if (response.role === 'ADMIN') 
+          {
+                    this.router.navigate(['/admin']); // Redirect to admin dashboard
+                } 
+                else if (response.role === 'USER') 
+                {
+                    this.router.navigate(['/home']); // Redirect to user dashboard
+                    
+                }
+                else{
+                  alert("Role not defined for the user. Redirecting to default page.");
+                    // Navigate to a default page or handle appropriately
+                    this.router.navigate(['/home']);
+
+                }
+                
+            } else {
+                alert("Incorrect username or password");
+            }
         },
         error: (error) => {
           console.error('Error logging in:', error);
           alert("Error logging in: " + error.message);
         }
       });
+      
   }
 }

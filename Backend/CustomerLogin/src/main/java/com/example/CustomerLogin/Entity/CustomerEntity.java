@@ -3,6 +3,7 @@ package com.example.CustomerLogin.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -21,7 +22,7 @@ public class CustomerEntity {
 
 	@Id
 	@Column(name = "ID")
-	@GeneratedValue
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "NAME")
@@ -29,6 +30,18 @@ public class CustomerEntity {
 
 	@Column(name = "PASSWORD")
 	private String password;
+	
+	@Column(name = "ROLE")
+    private String role="USER";
+
+	public String getRole() {
+		return role != null && !role.isEmpty() ? role : "USER";
+		
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;
