@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -11,14 +13,23 @@ export class AdminComponent {
   name: string = "";
   password: string = "";
   currentStudentID: string = "";
+
+  welcomeMessage: string = '';
   
 
   // To make http request to the backend API
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router,private http: HttpClient, private authService:AuthService) {}
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
 
   // It calls getAllStudent to fetch and display all student records when the component loads.
   ngOnInit(): void {
     this.getAllStudent();
+    this.welcomeMessage = `Welcome, ${this.authService.getUserName()}!`;
   }
 
 

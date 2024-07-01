@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './sharepage/navbar/navbar.component';
 import { AuthService } from './service/auth.service';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AdminlayoutComponent } from './sharepage/adminlayout/adminlayout.component';
+import { AdminnavbarComponent } from './sharepage/adminnavbar/adminnavbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AdminComponent } from './pages/admin/admin.component';
     HomeComponent,
     LayoutComponent,
     NavbarComponent,
-    AdminComponent
+    AdminComponent,
+    AdminlayoutComponent,
+    AdminnavbarComponent
   ],
   imports: [
     BrowserModule,

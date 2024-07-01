@@ -6,12 +6,13 @@ import { LayoutComponent } from './sharepage/layout/layout.component'
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './service/auth.guard';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AdminlayoutComponent } from './sharepage/adminlayout/adminlayout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  {path: 'admin',component:AdminComponent},
+
 
   {
     path: '',
@@ -25,6 +26,21 @@ const routes: Routes = [
       
     ],
   },
+
+
+  {
+    path: '',
+    component: AdminlayoutComponent,
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: 'admin',
+        component: AdminComponent,
+      },
+      
+    ],
+  },
+
 ];
 
 @NgModule({
