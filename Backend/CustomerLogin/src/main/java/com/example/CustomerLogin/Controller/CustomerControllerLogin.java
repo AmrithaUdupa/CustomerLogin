@@ -46,4 +46,22 @@ public class CustomerControllerLogin {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 	    }
 	}
+	
+	@PostMapping("/logout")
+    public ResponseEntity<Map<String, String>> logoutStudent(@RequestBody Map<String, String> request) {
+        String name = request.get("name");
+
+        // Perform logout logic (e.g., clear session or token from database)
+        boolean isLoggedOut = customerService.logout(name);
+
+        Map<String, String> response = new HashMap<>();
+        if (isLoggedOut) {
+            response.put("message", "Logout successful!");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "Error logging out");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+	
 }

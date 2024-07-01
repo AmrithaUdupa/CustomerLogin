@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-
+import { Component} from '@angular/core';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  StudentArray: any[] = [];
-  name: string = "";
-  password: string = "";
-  currentStudentID: string = "";
+export class HomeComponent  {
+  welcomeMessage: string = '';
+
+  constructor(private authService: AuthService) {}
+
+ 
 }

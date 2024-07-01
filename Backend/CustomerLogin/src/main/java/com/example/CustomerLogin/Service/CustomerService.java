@@ -73,5 +73,9 @@ public class CustomerService {
 	    return null;
 	}
 	
+	public boolean logout(String name) {
+        return true;
+    }
+	
 
 }
